@@ -161,13 +161,7 @@ namespace PomiaryGUI
 
         #region FormBL
 
-        enum FormStates
-        {
-            start,
-            power, current, voltage, cos, equipments,
-            daily, weekly, monthly, annual,
-            settings
-        }
+        
         FormStates formStates = FormStates.start;
         
         #region Buttons

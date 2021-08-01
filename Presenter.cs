@@ -105,10 +105,7 @@ namespace PomiaryGUI
         GearedValues<double> QL = new GearedValues<double>();
         //DataRow row = null;
 
-        enum Raports
-        {
-            day, week, month, year
-        }
+        
 
         public Presenter(IMainForm mainForm, IDataManager dataManager)
         {
@@ -192,25 +189,25 @@ namespace PomiaryGUI
 
         private void _mainForm_ButRaportsDailyClick(object sender, EventArgs e)
         {
-            Raport_data(Raports.day);
+            Raport_data(Raport.day);
         }
 
         private void _mainForm_ButRaportsWeeklyClick(object sender, EventArgs e)
         {
-            Raport_data(Raports.week);
+            Raport_data(Raport.week);
         }
 
         private void _mainForm_ButRaportsMonthlyClick(object sender, EventArgs e)
         {
-            Raport_data(Raports.month);
+            Raport_data(Raport.month);
         }
 
         private void _mainForm_ButRaportsAnnualClick(object sender, EventArgs e)
         {
-            Raport_data(Raports.year);
+            Raport_data(Raport.year);
         }
 
-        private void Raport_data(Raports step)
+        private void Raport_data(Raport step)
         {
             try
             {
@@ -249,22 +246,22 @@ namespace PomiaryGUI
 
                 if (dateTimeTo <= dateTimeFrom) return;
                 DateTime dateTime = new DateTime();
-                if (step == Raports.day)
+                if (step == Raport.day)
                 {
                     dateTime = dateTimeFrom.AddHours(1.0);
                     if ((dateTimeTo - dateTimeFrom).TotalDays > 7) dateTimeTo = dateTimeFrom.AddDays(7.0);
                 }
-                else if (step == Raports.week)
+                else if (step == Raport.week)
                 {
                     dateTime = dateTimeFrom.AddDays(1.0);
                     if ((dateTimeTo - dateTimeFrom).TotalDays > 7 * 4) dateTimeTo = dateTimeFrom.AddDays(7.0 * 4);
                 }
-                else if (step == Raports.month)
+                else if (step == Raport.month)
                 {
                     dateTime = dateTimeFrom.AddDays(1.0);
                     if ((dateTimeTo - dateTimeFrom).TotalDays > 31 * 4) dateTimeTo = dateTimeFrom.AddDays(31 * 4);
                 }
-                else if (step == Raports.year)
+                else if (step == Raport.year)
                 {
                     dateTime = dateTimeFrom.AddMonths(1);
                 }
@@ -273,10 +270,10 @@ namespace PomiaryGUI
                 while (dateTime < dateTimeTo)
                 {
                     time_day.Add(dateTime);
-                    if (step == Raports.day) dateTime = dateTime.AddHours(1.0);
-                    else if (step == Raports.week) dateTime = dateTime.AddDays(1.0);
-                    else if (step == Raports.month) dateTime = dateTime.AddDays(1.0);
-                    else if (step == Raports.year) dateTime = dateTime.AddMonths(1);
+                    if (step == Raport.day) dateTime = dateTime.AddHours(1.0);
+                    else if (step == Raport.week) dateTime = dateTime.AddDays(1.0);
+                    else if (step == Raport.month) dateTime = dateTime.AddDays(1.0);
+                    else if (step == Raport.year) dateTime = dateTime.AddMonths(1);
                 }
                 time_day.Add(dateTimeTo);
                 //12 000
