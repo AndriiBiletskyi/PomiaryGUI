@@ -285,40 +285,6 @@ namespace PomiaryGUI
                     List<float> L = new List<float>();
                     for (int r = 0; r < time_day.Count - 1; r++)
                     {
-                        //if (r == (time_day.Count - 2)) dataTable1 = _dataManager.GetEquData(i, time_day[r], time_day[r + 1]);
-                        //else dataTable1 = _dataManager.GetEquData(i, time_day[r], time_day[r + 1].AddSeconds(-1.0));
-                        //if (dataTable1.Columns.Contains("P_day"))
-                        //{
-                        //    float P_From = 0;
-                        //    float P_To = 0;
-                        //    float Q_From = 0;
-                        //    float Q_To = 0;
-
-                        //    object o = dataTable1.Compute("min([P_day])", string.Empty);
-                        //    if (o != DBNull.Value) P_From = Convert.ToSingle(o);
-                        //    else P_From = 0;
-                        //    o = dataTable1.Compute("max([P_day])", string.Empty);
-                        //    if (o != DBNull.Value) P_To = Convert.ToSingle(o);
-                        //    else P_To = 0;
-                        //    o = dataTable1.Compute("min([Q_day])", string.Empty);
-                        //    if (o != DBNull.Value) Q_From = Convert.ToSingle(o);
-                        //    else Q_From = 0;
-                        //    o = dataTable1.Compute("max([Q_day])", string.Empty);
-                        //    if (o != DBNull.Value) Q_To = Convert.ToSingle(o);
-                        //    else Q_To = 0;
-
-                        //    L.Add((float)Math.Round((P_To - P_From) / 1000, 2));
-                        //    L.Add((float)Math.Round((Q_To - Q_From) / 1000, 2));
-                        //}
-                        //else
-                        //{
-                        //    L.Add(0.0f);
-                        //    L.Add(0.0f);
-                        //}
-                        //float P_From = 0;
-                        //float P_To = 0;
-                        //float Q_From = 0;
-                        //float Q_To = 0;
                         float P_day = 0;
                         float Q_day = 0;
                         if (r == (time_day.Count - 2))
