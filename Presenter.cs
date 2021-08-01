@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using Pomiary.BL;
 using System.Windows.Forms;
 using LiveCharts.WinForms;
 using System.Drawing;
@@ -36,9 +35,6 @@ using System.Data;
 //
 //  P_day
 //  Q_day
-//
-//  
-//
 //-----------------------------------------------------------------------------------
 
 namespace PomiaryGUI
@@ -46,92 +42,33 @@ namespace PomiaryGUI
     public class Presenter
     {
         private readonly IMainForm _mainForm;
-        private readonly IDataManager _dataManager;
-        private DataTable table = null;
-        private List<string> l = new List<string>();
-
-        //private List<LiveCharts.WinForms.CartesianChart> c = new List<LiveCharts.WinForms.CartesianChart>();
-        //private LiveCharts.WinForms.CartesianChart chart1 = new LiveCharts.WinForms.CartesianChart
-        //{
-        //    AnimationsSpeed = new TimeSpan(0, 0, 0, 0, 0)
-        //};
-        //private LiveCharts.WinForms.CartesianChart chart2 = new LiveCharts.WinForms.CartesianChart
-        //{
-        //    AnimationsSpeed = new TimeSpan(0, 0, 0, 0, 0)
-        //};
-        //private LiveCharts.WinForms.CartesianChart chart3 = new LiveCharts.WinForms.CartesianChart
-        //{
-        //    AnimationsSpeed = new TimeSpan(0, 0, 0, 0, 0)
-        //};
-        //private LiveCharts.WinForms.CartesianChart chart4 = new LiveCharts.WinForms.CartesianChart
-        //{
-        //    AnimationsSpeed = new TimeSpan(0, 0, 0, 0, 0)
-        //};
-        //private LiveCharts.WinForms.CartesianChart chart5 = new LiveCharts.WinForms.CartesianChart
-        //{
-        //    AnimationsSpeed = new TimeSpan(0, 0, 0, 0, 0)
-        //};
-        //private LiveCharts.WinForms.CartesianChart chart6 = new LiveCharts.WinForms.CartesianChart
-        //{
-        //    AnimationsSpeed = new TimeSpan(0, 0, 0, 0, 0)
-        //};
-        //private LiveCharts.WinForms.CartesianChart chart7 = new LiveCharts.WinForms.CartesianChart
-        //{
-        //    AnimationsSpeed = new TimeSpan(0, 0, 0, 0, 0)
-        //};
-        //private LiveCharts.WinForms.CartesianChart chart8 = new LiveCharts.WinForms.CartesianChart
-        //{
-        //    AnimationsSpeed = new TimeSpan(0, 0, 0, 0, 0)
-        //};
-        //private LiveCharts.WinForms.CartesianChart chart9 = new LiveCharts.WinForms.CartesianChart
-        //{
-        //    AnimationsSpeed = new TimeSpan(0, 0, 0, 0, 0)
-        //};
-        //private LiveCharts.WinForms.CartesianChart chart10 = new LiveCharts.WinForms.CartesianChart
-        //{
-        //    AnimationsSpeed = new TimeSpan(0, 0, 0, 0, 0)
-        //};
-        //private LiveCharts.WinForms.CartesianChart chart11 = new LiveCharts.WinForms.CartesianChart
-        //{
-        //    AnimationsSpeed = new TimeSpan(0, 0, 0, 0, 0)
-        //};
-        //private LiveCharts.WinForms.CartesianChart chart12 = new LiveCharts.WinForms.CartesianChart
-        //{
-        //    AnimationsSpeed = new TimeSpan(0, 0, 0, 0, 0)
-        //};
-
-        List<string> dates = new List<string>();
-        GearedValues<double> PL = new GearedValues<double>();
-        GearedValues<double> QL = new GearedValues<double>();
-        //DataRow row = null;
-
-        
+        private readonly IDataManager _dataManager;        
 
         public Presenter(IMainForm mainForm, IDataManager dataManager)
         {
             _mainForm = mainForm;
             _dataManager = dataManager;
 
-            _mainForm.ButChartsPowerClick += new EventHandler(_mainForm_ButPowerClick);
-            _mainForm.ButChartsCurrentClick += new EventHandler(_mainForm_ButCurrentClick);
-            _mainForm.ButChartsVoltageClick += new EventHandler(_mainForm_ButVoltageClick);
-            _mainForm.ButChartsCosClick += new EventHandler(_mainForm_ButCosClick);
+            _mainForm.ButChartsPowerClick += new EventHandler(MainForm_ButPowerClick);
+            _mainForm.ButChartsCurrentClick += new EventHandler(MainForm_ButCurrentClick);
+            _mainForm.ButChartsVoltageClick += new EventHandler(MainForm_ButVoltageClick);
+            _mainForm.ButChartsCosClick += new EventHandler(MainForm_ButCosClick);
 
-            _mainForm.ButRaportsDailyClick += new EventHandler(_mainForm_ButRaportsDailyClick);
-            _mainForm.ButRaportsWeeklyClick += new EventHandler(_mainForm_ButRaportsWeeklyClick);
-            _mainForm.ButRaportsMonthlyClick += new EventHandler(_mainForm_ButRaportsMonthlyClick);
-            _mainForm.ButRaportsAnnualClick += new EventHandler(_mainForm_ButRaportsAnnualClick);
+            _mainForm.ButRaportsDailyClick += new EventHandler(MainForm_ButRaportsDailyClick);
+            _mainForm.ButRaportsWeeklyClick += new EventHandler(MainForm_ButRaportsWeeklyClick);
+            _mainForm.ButRaportsMonthlyClick += new EventHandler(MainForm_ButRaportsMonthlyClick);
+            _mainForm.ButRaportsAnnualClick += new EventHandler(MainForm_ButRaportsAnnualClick);
 
-            _mainForm.ButCloseClick += new EventHandler(_mainForm_ButCloseClick);
+            _mainForm.ButCloseClick += new EventHandler(MainForm_ButCloseClick);
 
-            _mainForm.ButChartsEquipmentsClick += new EventHandler(_mainForm_ButEquClick);
+            _mainForm.ButChartsEquipmentsClick += new EventHandler(MainForm_ButEquClick);
 
-            _mainForm.ChangeConnect += new EventHandler(_mainForm_ChangeConnect);
-            _mainForm.ReplaceDDMM += new EventHandler(_mainForm_ReplaceDDMM);
+            _mainForm.ChangeConnect += new EventHandler(MainForm_ChangeConnect);
+            _mainForm.ReplaceDDMM += new EventHandler(MainForm_ReplaceDDMM);
       
         }
 
-        private void _mainForm_ButEquClick(object sender, EventArgs e)
+        private void MainForm_ButEquClick(object sender, EventArgs e)
         {
             try
             {
@@ -152,57 +89,57 @@ namespace PomiaryGUI
             }
         }
 
-        private void _mainForm_ButCloseClick(object sender, EventArgs e)
+        private void MainForm_ButCloseClick(object sender, EventArgs e)
         {
             _dataManager.SqlConnectionClose();
             _mainForm.FormClose();
         }
 
-        private void _mainForm_ButCosClick(object sender, EventArgs e)
+        private void MainForm_ButCosClick(object sender, EventArgs e)
         {
             _mainForm.powerchart(_dataManager.GetEquData(_mainForm.PowerEquNumber, _mainForm.PowerGetDateFrom(),
                                                             _mainForm.PowerGetDateTo()), "cos");
         }
 
-        private void _mainForm_ButVoltageClick(object sender, EventArgs e)
+        private void MainForm_ButVoltageClick(object sender, EventArgs e)
         {
             _mainForm.powerchart(_dataManager.GetEquData(_mainForm.PowerEquNumber, _mainForm.PowerGetDateFrom(),
                                                             _mainForm.PowerGetDateTo()), "voltage");
         }
 
-        private void _mainForm_ButCurrentClick(object sender, EventArgs e)
+        private void MainForm_ButCurrentClick(object sender, EventArgs e)
         {
             _mainForm.powerchart(_dataManager.GetEquData(_mainForm.PowerEquNumber, _mainForm.PowerGetDateFrom(),
                                                             _mainForm.PowerGetDateTo()), "current");
         }
 
-        private void _mainForm_ButPowerClick(object sender, EventArgs e)
+        private void MainForm_ButPowerClick(object sender, EventArgs e)
         {
             _mainForm.powerchart(_dataManager.GetEquData(_mainForm.PowerEquNumber, _mainForm.PowerGetDateFrom(),
                                                             _mainForm.PowerGetDateTo()), "power");
         }
 
-        private void _mainForm_ChangeConnect(object sender, EventArgs e)
+        private void MainForm_ChangeConnect(object sender, EventArgs e)
         {
             _dataManager.SetConnection(_mainForm.SettingsGetDataConnection());
         }
 
-        private void _mainForm_ButRaportsDailyClick(object sender, EventArgs e)
+        private void MainForm_ButRaportsDailyClick(object sender, EventArgs e)
         {
             Raport_data(Raport.day);
         }
 
-        private void _mainForm_ButRaportsWeeklyClick(object sender, EventArgs e)
+        private void MainForm_ButRaportsWeeklyClick(object sender, EventArgs e)
         {
             Raport_data(Raport.week);
         }
 
-        private void _mainForm_ButRaportsMonthlyClick(object sender, EventArgs e)
+        private void MainForm_ButRaportsMonthlyClick(object sender, EventArgs e)
         {
             Raport_data(Raport.month);
         }
 
-        private void _mainForm_ButRaportsAnnualClick(object sender, EventArgs e)
+        private void MainForm_ButRaportsAnnualClick(object sender, EventArgs e)
         {
             Raport_data(Raport.year);
         }
@@ -328,7 +265,7 @@ namespace PomiaryGUI
             }
         }
     
-        private void _mainForm_ReplaceDDMM(object sender, EventArgs e)
+        private void MainForm_ReplaceDDMM(object sender, EventArgs e)
         {
             _dataManager.DD_MM(_mainForm.GetReplace());
         }
